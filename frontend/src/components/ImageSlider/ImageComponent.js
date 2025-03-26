@@ -4,7 +4,7 @@ const useImageComponent = (props) => {
   const { src, alt, width, height, className } = props;
 
   return (
-    <div className={`w-${width} h-${height} bg-gray-300 overflow-hidden mb-4 ${className}`}>
+    <div className={`w-${width} h-${height} ${className}`}>
       <img
         src={src}
         alt={alt}
