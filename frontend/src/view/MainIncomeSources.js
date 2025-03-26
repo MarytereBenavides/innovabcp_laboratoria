@@ -8,7 +8,7 @@ function MainIncomeSources() {
   return (
     <div className="flex flex-col items-center p-4 h-screen">
       <div className="p-4 border border-gray-200 h-full">
-      <ImageComponent src="/phone.jpg" alt="Slider Image" width="80" height="80" className="mb-4" />
+        <ImageComponent src="/phone.jpg" alt="Slider Image" width="80" height="80" className="mb-4" />
       </div>
       <div className="absolute bottom-10 w-full p-4">
         <div className="w-80 text-center mx-auto">
