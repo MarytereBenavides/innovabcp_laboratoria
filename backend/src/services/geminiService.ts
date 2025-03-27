@@ -48,34 +48,43 @@ const systemInstruction = {
 let conversationHistory: { role: string; parts: Part[] }[] = []; // Historial de la conversación
 const HISTORY_LIMIT = 5; // Limita el historial a 5 mensajes
 
-export const generateResponse = async (userMessage: string): Promise<string> => {
-    try {
-        // Agregar el mensaje del usuario al historial
-        conversationHistory.push({ role: 'user', parts: [{ text: userMessage }] });
+export const generateResponse = async (
+  userMessage: string
+): Promise<string> => {
+  try {
+    // Agregar el mensaje del usuario al historial
+    conversationHistory.push({ role: 'user', parts: [{ text: userMessage }] });
 
-         // Limitar el historial
-         if (conversationHistory.length > HISTORY_LIMIT) {
-            conversationHistory = conversationHistory.slice(conversationHistory.length - HISTORY_LIMIT);
-        }
-
-        const chat = model.startChat({
-            systemInstruction: systemInstruction,
-            history: conversationHistory
-        });
-
-        const result = await chat.sendMessage(userMessage);
-        const responseText = result.response.text();
-
-        // Agregar la respuesta del modelo al historial
-        conversationHistory.push({ role: 'model', parts: [{ text: responseText }] });
-
-        if (conversationHistory.length > HISTORY_LIMIT) {
-            conversationHistory = conversationHistory.slice(conversationHistory.length - HISTORY_LIMIT);
-        }
-
-        return responseText;
-    } catch (error) {
-        console.error('Error al generar respuesta:', error);
-        return 'Lo siento, hubo un error al procesar tu solicitud. Por favor, inténtalo de nuevo más tarde.';
+    // Limitar el historial
+    if (conversationHistory.length > HISTORY_LIMIT) {
+      conversationHistory = conversationHistory.slice(
+        conversationHistory.length - HISTORY_LIMIT
+      );
     }
+
+    const chat = model.startChat({
+      systemInstruction: systemInstruction,
+      history: conversationHistory
+    });
+
+    const result = await chat.sendMessage(userMessage);
+    const responseText = result.response.text();
+
+    // Agregar la respuesta del modelo al historial
+    conversationHistory.push({
+      role: 'model',
+      parts: [{ text: responseText }]
+    });
+
+    if (conversationHistory.length > HISTORY_LIMIT) {
+      conversationHistory = conversationHistory.slice(
+        conversationHistory.length - HISTORY_LIMIT
+      );
+    }
+
+    return responseText;
+  } catch (error) {
+    console.error('Error al generar respuesta:', error);
+    return 'Lo siento, hubo un error al procesar tu solicitud. Por favor, inténtalo de nuevo más tarde.';
+  }
 };
