@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const SidebarMenu = () => {
   return (
-    <div className="bg-white h-screen w-64 p-4 flex flex-col items-start rounded-3xl">
+    <div className="bg-white h-screen w-64 p-4 flex flex-col items-start border-r border-gray-200">
       <div className='mb-4'>
         <Image src="/assets/logo-bcp.png" alt="Logo" width={100} height={100} />
       </div>

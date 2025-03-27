@@ -7,7 +7,7 @@ function HomeLearn() {
             <div className="flex-1">
                  <SidebarMenu />
             </div>
-            <div className="grow-7">
+            <div className="flex-2">
                 <MainContent />
             </div>
             <div className="flex-1">
