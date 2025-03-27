@@ -1,12 +1,9 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output = "../generated/prisma"
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -14,57 +11,116 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  user_id   String   @id @default(uuid())
-  user_name String   @db.VarChar(50)
-  email     String   @unique @db.VarChar(255)
-  password  String   @db.VarChar(255)
-  avatar_url String?  @db.VarChar(300)
+// Enum para los roles de usuario
+enum Role {
+  ADMIN
+  PLAYER
+}
+
+model user {
+  user_id    Int    @id @default(autoincrement())
+  user_name  String
+  email      String @unique
+  password   String
+  avatar_url String?
   created_at DateTime @default(now())
+  role       Role
 
-  gameSessions   GameSession[]
-  userAchievements UserAchievement[]
-  progress      Progress?
+  // Relación con game_session (1:N)
+  game_sessions game_session[]
+
+  // Relación con user_achievements (1:N)
+  achievements user_achievements[]
+
+  // Relación con progress (1:1)
+  progress progress?
 }
 
-model GameSession {
-  game_session_id String   @id @default(uuid())
-  user_id         String
-  game_type       String   @db.VarChar(100)
-  earned_xp      Int
-  earned_coins   Int
-  played_at      DateTime @default(now())
+model progress {
+  progress_id Int @id @default(autoincrement())
+  user_id     Int @unique
+  level       Int
+  coins       Int
+  total_xp    Int
+  updated_at  DateTime @updatedAt
 
-  user User @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  // Relación con User (1:1)
+  user user @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
 }
 
-model Achievement {
-  achievement_id String   @id @default(uuid())
-  name          String   @db.VarChar(100)
-  description   String?
-  icon_url      String?  @db.VarChar(300)
+model game_session {
+  game_session_id Int @id @default(autoincrement())
+  user_id         Int
+  game_id         Int
+  earned_xp       Int
+  played_at       DateTime @default(now())
+  earned_coins    Int
+  score           Int
+
+  @@index([user_id])
+  @@index([game_id])
+
+  // Relación con User (N:1)
+  user user @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+
+  // Relación con MiniGame (N:1)
+  minigame mini_game @relation(fields: [game_id], references: [game_id], onDelete: Cascade)
+}
+
+model mini_game {
+  game_id     Int    @id @default(autoincrement())
+  name        String
+  description String
+
+  // Relación con MiniGameQuestion (1:N)
+  questions mini_game_question[]
+
+  // Relación con GameSession (1:N)
+  game_sessions game_session[]
+}
+
+model mini_game_question {
+  question_id Int @id @default(autoincrement())
+  game_id     Int
+  text        String
+
+  // Relación con mini_game (N:1)
+  mini_game mini_game @relation(fields: [game_id], references: [game_id], onDelete: Cascade)
+
+  // Relación con mini_gameAnswer (1:N)
+  answers mini_game_answer[]
+}
+
+model mini_game_answer {
+  answer_id   Int @id @default(autoincrement())
+  question_id Int
+  text        String
+  is_correct  Boolean
+
+  // Relación con mini_game_question (N:1)
+  question mini_game_question @relation(fields: [question_id], references: [question_id], onDelete: Cascade)
+}
+
+model achievement {
+  achievement_id Int    @id @default(autoincrement())
+  name          String
+  description   String
+  icon_url      String
   xp_reward     Int
 
-  userAchievements UserAchievement[]
+  // Relación con user_achievements (1:N)
+  user_achievements user_achievements[]
 }
 
-model UserAchievement {
-  user_achievement_id String   @id @default(uuid())
-  user_id             String
-  achievement_id      String
-  earned_at          DateTime @default(now())
+model user_achievements {
+  user_achievements_id Int @id @default(autoincrement())
+  user_id             Int
+  achievement_id      Int
+  earned_at           DateTime @default(now())
 
-  user        User        @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
-  achievement Achievement @relation(fields: [achievement_id], references: [achievement_id], onDelete: Cascade)
-}
+  // Relación con User (N:1)
+  user user @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
 
-model Progress {
-  progress_id String   @id @default(uuid())
-  user_id     String   @unique
-  total_xp    Int      @default(0)
-  level       Int      @default(1)
-  coins       Int      @default(0)
-  updated_at  DateTime @default(now())
-
-  user User @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  // Relación con Achievement (N:1)
+  achievement achievement @relation(fields: [achievement_id], references: [achievement_id], onDelete: Cascade)
 }
