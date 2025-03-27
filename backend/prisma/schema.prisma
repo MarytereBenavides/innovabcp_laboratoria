@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id   String   @id @default(uuid())
+  user_name String   @db.VarChar(50)
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  avatar_url String?  @db.VarChar(300)
+  created_at DateTime @default(now())
+
+  gameSessions   GameSession[]
+  userAchievements UserAchievement[]
+  progress      Progress?
+}
+
+model GameSession {
+  game_session_id String   @id @default(uuid())
+  user_id         String
+  game_type       String   @db.VarChar(100)
+  earned_xp      Int
+  earned_coins   Int
+  played_at      DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+
+model Achievement {
+  achievement_id String   @id @default(uuid())
+  name          String   @db.VarChar(100)
+  description   String?
+  icon_url      String?  @db.VarChar(300)
+  xp_reward     Int
+
+  userAchievements UserAchievement[]
+}
+
+model UserAchievement {
+  user_achievement_id String   @id @default(uuid())
+  user_id             String
+  achievement_id      String
+  earned_at          DateTime @default(now())
+
+  user        User        @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  achievement Achievement @relation(fields: [achievement_id], references: [achievement_id], onDelete: Cascade)
+}
+
+model Progress {
+  progress_id String   @id @default(uuid())
+  user_id     String   @unique
+  total_xp    Int      @default(0)
+  level       Int      @default(1)
+  coins       Int      @default(0)
+  updated_at  DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
