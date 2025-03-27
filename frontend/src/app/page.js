@@ -1,10 +1,18 @@
+'use client';
 import ImageSlider from "@/components/ImageSlider";
 import MainIncomeSources from "@/view/MainIncomeSources";
 import OnboardingDriver from "@/components/OnboardingDriver";
-export default function Home() {
+import Header from "@/components/Header";
+import MainSection from "@/view/MainSection";
+
+
+function Home() {
   return (
-    <div className="border border-gray-300s">
-      <MainIncomeSources />
+    <div >
+      <Header />
+      <MainSection />
     </div>
   );
 }
+
+export default Home;

@@ -1,4 +1,5 @@
-
+import React from "react";
+import OnboardingDriver from "@/components/OnboardingDriver";
 
 export default function Onboarding() {
   return (
