@@ -1,0 +1,126 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enum para los roles de usuario
+enum Role {
+  ADMIN
+  PLAYER
+}
+
+model user {
+  user_id    Int    @id @default(autoincrement())
+  user_name  String
+  email      String @unique
+  password   String
+  avatar_url String?
+  created_at DateTime @default(now())
+  role       Role
+
+  // Relación con game_session (1:N)
+  game_sessions game_session[]
+
+  // Relación con user_achievements (1:N)
+  achievements user_achievements[]
+
+  // Relación con progress (1:1)
+  progress progress?
+}
+
+model progress {
+  progress_id Int @id @default(autoincrement())
+  user_id     Int @unique
+  level       Int
+  coins       Int
+  total_xp    Int
+  updated_at  DateTime @updatedAt
+
+  // Relación con User (1:1)
+  user user @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+
+model game_session {
+  game_session_id Int @id @default(autoincrement())
+  user_id         Int
+  game_id         Int
+  earned_xp       Int
+  played_at       DateTime @default(now())
+  earned_coins    Int
+  score           Int
+
+  @@index([user_id])
+  @@index([game_id])
+
+  // Relación con User (N:1)
+  user user @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+
+  // Relación con MiniGame (N:1)
+  minigame mini_game @relation(fields: [game_id], references: [game_id], onDelete: Cascade)
+}
+
+model mini_game {
+  game_id     Int    @id @default(autoincrement())
+  name        String
+  description String
+
+  // Relación con MiniGameQuestion (1:N)
+  questions mini_game_question[]
+
+  // Relación con GameSession (1:N)
+  game_sessions game_session[]
+}
+
+model mini_game_question {
+  question_id Int @id @default(autoincrement())
+  game_id     Int
+  text        String
+
+  // Relación con mini_game (N:1)
+  mini_game mini_game @relation(fields: [game_id], references: [game_id], onDelete: Cascade)
+
+  // Relación con mini_gameAnswer (1:N)
+  answers mini_game_answer[]
+}
+
+model mini_game_answer {
+  answer_id   Int @id @default(autoincrement())
+  question_id Int
+  text        String
+  is_correct  Boolean
+
+  // Relación con mini_game_question (N:1)
+  question mini_game_question @relation(fields: [question_id], references: [question_id], onDelete: Cascade)
+}
+
+model achievement {
+  achievement_id Int    @id @default(autoincrement())
+  name          String
+  description   String
+  icon_url      String
+  xp_reward     Int
+
+  // Relación con user_achievements (1:N)
+  user_achievements user_achievements[]
+}
+
+model user_achievements {
+  user_achievements_id Int @id @default(autoincrement())
+  user_id             Int
+  achievement_id      Int
+  earned_at           DateTime @default(now())
+
+  // Relación con User (N:1)
+  user user @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+
+  // Relación con Achievement (N:1)
+  achievement achievement @relation(fields: [achievement_id], references: [achievement_id], onDelete: Cascade)
+}
