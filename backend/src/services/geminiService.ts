@@ -46,7 +46,7 @@ const systemInstruction = {
 };
 
 let conversationHistory: { role: string; parts: Part[] }[] = []; // Historial de la conversación
-const HISTORY_LIMIT = 5; // Limita el historial a 5 mensajes
+const HISTORY_LIMIT = 10; // Limita el historial a 5 mensajes
 
 export const generateResponse = async (
   userMessage: string
@@ -64,7 +64,7 @@ export const generateResponse = async (
 
     const chat = model.startChat({
       systemInstruction: systemInstruction,
-      history: conversationHistory
+      history: [...conversationHistory]
     });
 
     const result = await chat.sendMessage(userMessage);
