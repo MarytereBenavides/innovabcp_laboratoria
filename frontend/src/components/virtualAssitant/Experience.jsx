@@ -2,6 +2,8 @@
 import {Box, Environment, Gltf, OrbitControls, CameraControls} from '@react-three/drei';
 import { Canvas,invalidate,useFrame   } from '@react-three/fiber';
 import { Suspense, useRef } from 'react';
+import { Assistant } from './Assistant';
+import { degToRad } from 'three/src/math/MathUtils';
 
 export const Experience = () => {   
     return(
@@ -16,6 +18,7 @@ export const Experience = () => {
                 <Suspense fallback={null}>
                     <Environment preset="sunset" />
                     <ambientLight intensity={0.5} color="pink" />
+                    <Assistant assistant={"Nanami"} position={[-1, -1.7, -3]} scale={1.5} rotation-y={degToRad(20)} />
                     <GltfModel />
                 </Suspense>
                <CameraManager />
