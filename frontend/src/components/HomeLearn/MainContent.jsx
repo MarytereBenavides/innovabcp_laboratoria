@@ -1,6 +1,15 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 const MainContent = () => {
+  const router = useRouter();
+
+  const handleNavigation = () => {
+    router.push("/quizcard");
+  };
   const sections = [
     {
       title: "Ahorros",
@@ -65,7 +74,9 @@ const MainContent = () => {
                 key={i}
                 className="flex flex-col items-center"
               >
-                <div className="bg-white py-4 px-8 rounded-lg shadow-md flex justify-center items-center hover:bg-purple-100 cursor-pointer">
+                
+                <div className="bg-white py-4 px-8 rounded-lg shadow-md flex justify-center items-center hover:bg-purple-100 cursor-pointer
+                " onClick={handleNavigation}>
                   <Image src="/assets/pig.png" alt="Logo" width={50} height={50} />
                 </div>
                 <p className="text-xs text-gray-500 mt-2 text-center">{item}</p>

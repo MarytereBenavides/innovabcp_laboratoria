@@ -1,11 +1,9 @@
-export default function ProgressBar({ progress }) {
-    return (
-      <div className="w-full bg-gray-700 rounded-full h-4 overflow-hidden">
-        <div
-          className="bg-green-400 h-full transition-all duration-300"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-    );
-  }
-  
+import React from 'react';
+
+export function ProgressBar({ progress }) {
+  return (
+    <div className="w-full bg-[#E5E5E5] rounded-full h-2 dark:bg-[#E5E5E5] ml-4">
+      <div className="bg-[#FF7700] h-2 rounded-full" style={{ width: `${progress}%` }}></div>
+    </div>
+  );
+}
