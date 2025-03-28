@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "driver.js": "^1.3.5",
-    "microsoft-cognitiveservices-speech-sdk": "^1.43.0"
-  }
-}
