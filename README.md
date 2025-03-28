@@ -1,5 +1,10 @@
 # Innovabcp Women Edition - EducaFin
 
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/83fec74f-f046-47a8-908e-b5cc8088e80d">
+</div>  
+
+
 Este proyecto se desarrolló en la hackathon **Innovabcp Women Edition** con el objetivo de **empoderar a las mujeres peruanas a través de la educación financiera**. Ofrecemos una plataforma digital que facilita el acceso a conceptos financieros y bancarios mediante **minijuegos** y un **asistente virtual inteligente** llamado **Camila**.
 
 ----------
@@ -28,7 +33,7 @@ El proyecto busca cerrar la brecha de educación financiera en mujeres peruanas 
     
 -   **Three.js & React Three Fiber** 
     
--   **Tailwind CSS** 
+-   **Tailwind CSS**
     
 
 ### **Backend**
@@ -48,6 +53,15 @@ El proyecto busca cerrar la brecha de educación financiera en mujeres peruanas 
 
 ----------
 
+## Despliegue 
+
+### **Frontend**
+🔗 [EducaFin](https://innovabcp-laboratoria-8fnf-9jtyhy1j8-deabreuabs-projects.vercel.app/)
+
+### **Backend**
+🔗 [API EducaFin](https://innovabcp-laboratoria.vercel.app/)
+
+
 ## Alcance del MVP y Proyecciones Futuras
 
 ### **📌 MVP Implementado**
@@ -65,6 +79,12 @@ El proyecto busca cerrar la brecha de educación financiera en mujeres peruanas 
 🚀 **Personalización:** Contenido adaptado según experiencia financiera de la usuaria.
 
 ----------
+
+## 🔗 Presentaciones
+
+Figma (Diseño de la Plataforma): [¡Echale un vistazo a nuestro prototipo funcional!](https://www.figma.com/proto/ejXmpnZs0bzTrbzqvDAsNW/BCP---Plataforma-educativa?page-id=10%3A884&node-id=10-885&viewport=489%2C253%2C0.17&t=JLk9ZbsVM49dKkEh-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=101%3A3372 )
+
+Canva (Presentación del Proyecto): [¡Revisa la presentación de nuestro proyecto!](https://www.canva.com/design/DAGi5-kvoo8/Z91U1-Iwa13U3MAoizFBZg/view?utm_content=DAGi5-kvoo8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb8c6c9930)
 
 ## Estructura del Proyecto
 
@@ -98,4 +118,14 @@ En el futuro, este proyecto podrá **expandirse con más funcionalidades, integr
 
 ----------
 
+## Autores
+
+| [<img src="https://avatars.githubusercontent.com/u/111664133?v=4" width=115><br><sub>Tania Gamboa</sub>](https://github.com/tania9724) | [<img src="https://avatars.githubusercontent.com/u/45071280?v=4" width=115><br><sub>Yuri Quezada</sub>](https://github.com/yuriquezada) | [<img src="https://avatars.githubusercontent.com/u/75746438?v=4" width=115><br><sub>Marytere Benavides</sub>](https://github.com/MarytereBenavides) | [<img src="https://avatars.githubusercontent.com/u/67168150?v=4" width=115><br><sub>Roxsana Velasquez</sub>](https://github.com/roxsyVel910) | [<img src="https://avatars.githubusercontent.com/u/104578210?v=4" width=115><br><sub>Barbara De Abreu</sub>](https://github.com/deabreuab) |
+| :---: | :---: | :---: | :---: | :---: |
+| **Innovación** | **UX/UI** | **Frontend Developer** | **Frontend Developer** | **Backend Developer** |
+----------
+
 💡 _"La educación financiera no debería ser un privilegio, sino un derecho accesible para todas."_ ✨
+
+
+
