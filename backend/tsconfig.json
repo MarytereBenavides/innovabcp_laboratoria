@@ -112,7 +112,8 @@
     "types": ["node"],
     "paths": {
       "@generated/prisma": ["./generated/prisma/index"]
-    }
+    },
+  },
+  "include": ["/api/*.ts", "src/**/*"],
 
-  }
 }
