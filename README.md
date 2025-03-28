@@ -8,10 +8,13 @@ Este proyecto se desarrolló en la hackathon **Innovabcp Women Edition** con el 
 
 El proyecto busca cerrar la brecha de educación financiera en mujeres peruanas mediante:
 
-✅ **Minijuegos educativos:** Trivias y simulaciones de situaciones financieras para aprender de manera lúdica.  
+✅ **Minijuegos educativos:** Trivias y simulaciones de situaciones financieras para aprender de manera lúdica.
+
 ✅ **Asistente virtual con IA:** Camila responde consultas con lenguaje cotidiano y contextualizado.  
-✅ **Empoderamiento digital:** Brinda herramientas prácticas para mejorar la gestión de finanzas personales.
-✅ **Gamificación**: Insignias, recompensas y desafíos para incentivar el aprendizaje continuo.
+
+✅ **Empoderamiento digital:** Brinda herramientas prácticas para mejorar la gestión de finanzas personales. 
+
+✅ **Gamificación:** Insignias, recompensas y desafíos para incentivar el aprendizaje continuo.
 
 ----------
 
