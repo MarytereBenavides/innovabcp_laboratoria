@@ -29,7 +29,7 @@ export default function DashboardRight() {
           <span className="text-md text-gray-400">
             10 PUNTOS
           </span>
-        </div>
+        </div> 
       </div>
      <div className="border border-gray-200 p-4 rounded-xl flex flex-col space-y-3">
        <h3 className="text-xs text-gray-600">Crea un perfil para guardar tus puntos</h3>
