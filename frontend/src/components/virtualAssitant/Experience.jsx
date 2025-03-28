@@ -9,6 +9,7 @@ import {
     useGLTF,
   } from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
+import { useRouter } from "next/navigation";
 import { Leva, button, useControls } from "leva";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { degToRad } from "three/src/math/MathUtils";
@@ -33,6 +34,7 @@ const itemPlacement = {
   };
 
 export const Experience = () => {   
+  const router = useRouter();
     const teacher = useAITeacher((state) => state.teacher);
     const classroom = useAITeacher((state) => state.classroom);
     const [isMounted, setIsMounted] = useState(false);
@@ -45,8 +47,19 @@ export const Experience = () => {
     if (!isMounted) {
        return <Loader />;
     }
+
+    const handleClose = () => {
+      router.push("/learn");
+    };
+
     return(
         <>
+        <button
+        onClick={handleClose}
+        className="fixed top-4 right-4 z-20 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold hover:bg-red-600 transition-colors"
+      >
+        X
+      </button>
             <div className="z-10 md:justify-center fixed bottom-4 left-4 right-4 flex gap-3 flex-wrap justify-stretch">
                 <TypingBox />
             </div>
