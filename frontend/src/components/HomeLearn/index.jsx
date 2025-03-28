@@ -1,9 +1,13 @@
+'use client'
+import React from "react";
 import SidebarMenu from "./SidebarMenu"
 import MainContent from "./MainContent";
 import DashboardRight from "./DashboardRight";
 import Header from "@/components/Header";
+import AvatarButton from "./AvatarButton";
 
 function HomeLearn() {
+    
     return (
         <div className="bg-white">
             <Header />
@@ -18,6 +22,7 @@ function HomeLearn() {
                     <DashboardRight />
                 </div>
             </div>
+             <AvatarButton/>
         </div>
     );
 }

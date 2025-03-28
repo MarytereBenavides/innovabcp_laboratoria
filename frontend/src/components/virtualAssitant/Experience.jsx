@@ -36,6 +36,7 @@ const itemPlacement = {
 export const Experience = () => {   
   const router = useRouter();
     const teacher = useAITeacher((state) => state.teacher);
+    const askAI = useAITeacher((state) => state.askAI); 
     const classroom = useAITeacher((state) => state.classroom);
     const [isMounted, setIsMounted] = useState(false);
 
@@ -43,7 +44,12 @@ export const Experience = () => {
         setIsMounted(true);
       }, []);
 
-    
+      useEffect(() => {
+        if (isMounted && askAI) {
+          askAI("Hola"); 
+        }
+      }, [isMounted, askAI])
+
     if (!isMounted) {
        return <Loader />;
     }
