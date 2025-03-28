@@ -9,7 +9,7 @@ export default function DashboardRight() {
         <div className=" flex items-center space-x-4">
 
           <div>
-            <Image src="/assets/playtwo.png" alt="Logo" width={100} height={100} />
+            <Image src="/assets/imagsky.png" alt="Logo" width={100} height={100} />
           </div>
           <div>
             <p className="text-sm text-gray-400">
@@ -25,7 +25,7 @@ export default function DashboardRight() {
           <a href="#" className="text-blue-400 text-sm">VER TODO</a>
         </div>
         <div className="flex items-center gap-2 mt-4">
-          <Image src="/assets/one.svg" alt="Logo" width={50} height={50} />
+          <Image src="/assets/start.png" alt="Logo" width={50} height={50} />
           <span className="text-md text-gray-400">
             10 PUNTOS
           </span>
@@ -36,16 +36,7 @@ export default function DashboardRight() {
        <button className="bg-orange-500 text-white p-2 rounded-full text-sm">Crear mi perfil</button>
        <button className="bg-gray-200 text-gray-500 p-2 rounded-full text-sm">Iniciar Sesión</button>
      </div>
-      <div className=" border border-gray-200 p-4 rounded-xl space-y-3">
-        <div className="flex justify-between items-center">
-          <h3 className="text-sm">Desafíos del día</h3>
-          <a href="#" className="text-blue-400 text-sm">VER TODOS</a>
-        </div>
-
-        <Challenge text="Gana 20 EXP" progress="0/20" />
-        <Challenge text="Obtén un puntaje de 90% o más en 2 lecciones" progress="0/2" />
-        <Challenge text="Responde correctamente 5 veces seguidas en 4 lecciones" progress="0/4" />
-      </div>
+     
 
     </div>
   );

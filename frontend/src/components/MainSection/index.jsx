@@ -16,7 +16,7 @@ export default function MainSection() {
             <h2 className="text-4xl font-bold text-blue-900 mb-4">Aprende, juega y toma el control de tus finanzas</h2>
             <div className="flex flex-col gap-4 w-80">
             <Link href="/learn">
-              <button className="bg-orange-500 text-white px-6 py-2 rounded-full">Empezar a aprender</button>
+              <button className="bg-orange-500 text-white px-6 py-2 rounded-full w-80">Empezar a aprender</button>
             </Link>
               <button className="border border-gray-300 px-6 py-2 rounded-full">Tengo una cuenta</button>
             </div>

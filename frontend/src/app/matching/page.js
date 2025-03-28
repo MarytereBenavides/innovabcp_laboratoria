@@ -1,10 +1,10 @@
 'use client';
 
-import QuizCard from "@/components/QuizCard";
+import CardMatching from "@/components/CardMatching";
 function Page() {
   return (
     <div >
-      <QuizCard />
+      <CardMatching />
     </div>
   );
 }
