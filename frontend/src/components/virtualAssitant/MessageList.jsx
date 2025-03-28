@@ -6,6 +6,7 @@ export const MessagesList = () => {
   const playMessage = useAITeacher((state) => state.playMessage);
   const { currentMessage } = useAITeacher();
   const classroom = useAITeacher((state) => state.classroom);
+  const stopMessage = useAITeacher((state) => state.stopMessage);
 
   const container = useRef();
 

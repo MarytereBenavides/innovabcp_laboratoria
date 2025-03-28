@@ -37,6 +37,8 @@ export const Experience = () => {
   const router = useRouter();
     const teacher = useAITeacher((state) => state.teacher);
     const askAI = useAITeacher((state) => state.askAI); 
+    const stopMessage = useAITeacher((state) => state.stopMessage);
+    const { currentMessage } = useAITeacher();
     const classroom = useAITeacher((state) => state.classroom);
     const [isMounted, setIsMounted] = useState(false);
 
@@ -46,9 +48,13 @@ export const Experience = () => {
 
       useEffect(() => {
         if (isMounted && askAI) {
-          askAI("Hola"); 
+          const timer = setTimeout(() => {
+            askAI("Hola");
+          }, 5000);
+    
+          return () => clearTimeout(timer);
         }
-      }, [isMounted, askAI])
+      }, [isMounted, askAI]);
 
     if (!isMounted) {
        return <Loader />;
@@ -56,6 +62,7 @@ export const Experience = () => {
 
     const handleClose = () => {
       router.push("/learn");
+      stopMessage(currentMessage)
     };
 
     return(
