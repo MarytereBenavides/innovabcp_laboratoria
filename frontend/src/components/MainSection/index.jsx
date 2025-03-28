@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 export default function MainSection() {
 
     return (
-      <div>
+      <div className="bg-white">
         <Header />
         <main className="flex flex-col items-center justify-center min-h-screen p-8 max-w-7xl mx-auto w-full bg-white">
           <div className="flex justify-between w-full">

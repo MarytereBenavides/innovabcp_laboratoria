@@ -1,10 +1,10 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Experience } from "@/components/virtualAssitant/Experience";
 import MainSection from "@/components/MainSection";
 
-export default function Home() {
+function HomeContent() {
   const [showExperience, setShowExperience] = useState(false);
   const searchParams = useSearchParams();
 
@@ -26,5 +26,13 @@ export default function Home() {
         </div>
       )}
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Cargando...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }

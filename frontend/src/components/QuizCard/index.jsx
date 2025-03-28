@@ -1,14 +1,20 @@
 import React from 'react';
+import { useRouter } from "next/navigation";
 import { ProgressBar } from '@/components/QuizCard/ProgressBar';
 import { OptionCard } from '@/components/QuizCard/OptionCard';
 import { Tooltip } from '@/components/QuizCard/Tooltip';
 
 export default function QuizCard() {
+  const router = useRouter();
+  const handleClose = () => {
+    router.push("/learn");
+  };
+
   return (
     <div className="min-h-screen bg-purple-50 flex justify-center items-center p-4">
       <div className="bg-white shadow-lg rounded-2xl p-6 max-w-xl w-full">
         <div className="flex justify-between items-center mb-4">
-          <button className="text-2xl text-gray-400">&times;</button>
+          <button className="text-2xl text-gray-400 cursor-pointer"  onClick={handleClose}>&times;</button>
           <ProgressBar progress={10} />
           <div className='flex flex-col items-center'>
             <span className="text-md font-semibold">4</span>

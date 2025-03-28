@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 
 function HomeLearn() {
     return (
-        <div>
+        <div className="bg-white">
             <Header />
             <div className="flex m-4 gap-6">
                 <div className="flex-1">
