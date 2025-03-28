@@ -26,10 +26,11 @@ export const getQuestions = async (gameId: number) => {
   });
 };
 
-export const checkAnswer = async (gameSessionId: number, answerId: number) => {
+export const checkAnswer = async (gameSessionId: number, answerId: number, question_id: number) => {
   const answer = await prisma.mini_game_answer.findUnique({
-    where: { answer_id: answerId }
-  });
+    where: { answer_id: answerId,  question_id: question_id },
+    include: { question: true }
+  })
 
   if (!answer) return null;
 
@@ -41,7 +42,7 @@ export const checkAnswer = async (gameSessionId: number, answerId: number) => {
     data: { score: { increment: scoreUpdate } }
   });
 
-  return { isCorrect, scoreEarned: scoreUpdate };
+  return { isCorrect, scoreEarned: scoreUpdate, answer };
 };
 
 export const updateScore = async (gameSessionId: number, score: number) => {

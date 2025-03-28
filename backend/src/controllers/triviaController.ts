@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import * as triviaService from '../services/triviaService';
+import { generateAdviceAnswer } from '../services/geminiService';
+
 
 export const startGame = async (req: Request, res: Response) => {
   try {
@@ -39,15 +41,28 @@ export const getQuestion = async (req: Request, res: Response) => {
 
 export const submitAnswer = async (req: Request, res: Response) => {
   try {
-    const { game_session_id, answer_id } = req.body;
-    const result = await triviaService.checkAnswer(game_session_id, answer_id);
+    const { game_session_id, question_id, answer_id } = req.body;
 
+    const gameSession = await triviaService.getGameSession(+game_session_id);
+    if (!gameSession){
+        res.status(404).json({ error: 'Sesión no encontrada' });
+        return;
+    }
+
+    const result = await triviaService.checkAnswer(game_session_id, answer_id, question_id);
     if (!result){
         res.status(404).json({ error: 'Respuesta no encontrada' });
         return
     }
 
-    res.json(result);
+    const advice = await generateAdviceAnswer(result.answer.text, result.answer.question.text, result.isCorrect);
+
+    res.json({
+      isCorrect: result.isCorrect,
+      message: result.isCorrect ? 'Respuesta correcta' : 'Respuesta incorrecta',
+      score: result.scoreEarned,
+      advice
+    });
   } catch (error) {
     res.status(500).json({ error: 'Error procesando respuesta' });
   }

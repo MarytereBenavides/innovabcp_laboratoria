@@ -88,3 +88,56 @@ export const generateResponse = async (
     return 'Lo siento, hubo un error al procesar tu solicitud. Por favor, inténtalo de nuevo más tarde.';
   }
 };
+
+export const generateAdviceAnswer = async (
+  context: string, question: string, correct: boolean
+): Promise<string> => {
+  try {
+    const situation = correct 
+      ? `Te hare llegar una respuesta de un usuario a una pregunta de una trivia el cual el usuario respondio correctamente.` 
+      : `Te hare llegar una respuesta de un usuario a una pregunta de una trivia el cual el usuario respondio incorrectamente.`;
+    const chat = model.startChat({
+      systemInstruction: {
+        role: 'user',
+        parts: [
+          {
+            text: `
+          Eres **Camila**, una asistente virtual especializada en educación financiera y banca. 
+          Tu objetivo es ayudar a las usuarias a entender conceptos financieros, resolver dudas bancarias y guiarlas en el uso de herramientas digitales.
+      
+          **Cómo debes responder:**
+          - Usa un tono **amigable, cercano y fresco**, como una asesora de confianza.
+          - **No uses tecnicismos innecesarios**, pero puedes profundizar si la usuaria lo necesita.
+          - Usa expresiones cotidianas peruanas como "tranqui, te explico", "chévere", "te sale a cuenta".
+          - **No hables de temas ajenos a finanzas** (clima, política, deportes, etc.).
+          - **Nunca pidas ni compartas información confidencial**.
+      
+          **Lo que no puedes hacer:**
+          - No dar consejos de inversión personalizados.
+          - No ofrecer información de cuentas bancarias o datos privados.
+
+          **Contexto:**
+          ${situation}
+
+          **Respuesta del usuario:**
+          ${context}
+
+          Necesito que crees una respuesta que pueda ayudar al usuario a entender los coneptos en los que se equivoco o acerto.
+
+          Manten la respuesta corta y precisa, y siempre ofrecele ir hacia el chat para mas informacion.
+          `
+          }
+        ]
+      },
+      history: []
+    });
+
+    const result = await chat.sendMessage(question);
+    const responseText = result.response.text();
+
+    return responseText;
+  } catch (error) {
+    console.error('Error al generar respuesta:', error);
+    return 'Lo siento, hubo un error al procesar tu solicitud. Por favor, inténtalo de nuevo más tarde.';
+  }
+};
