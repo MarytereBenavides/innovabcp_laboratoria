@@ -11,7 +11,7 @@ El proyecto busca cerrar la brecha de educación financiera en mujeres peruanas 
 ✅ **Minijuegos educativos:** Trivias y simulaciones de situaciones financieras para aprender de manera lúdica.  
 ✅ **Asistente virtual con IA:** Camila responde consultas con lenguaje cotidiano y contextualizado.  
 ✅ **Empoderamiento digital:** Brinda herramientas prácticas para mejorar la gestión de finanzas personales.
-✅ Gamificación: Insignias, recompensas y desafíos para incentivar el aprendizaje continuo.
+✅ **Gamificación**: Insignias, recompensas y desafíos para incentivar el aprendizaje continuo.
 
 ----------
 
