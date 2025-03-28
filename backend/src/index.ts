@@ -11,7 +11,7 @@ app.use('/api', router);
 const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.send('¡Hello!');
+  res.send('¡Hello mundo!');
 });
 
 app.listen(PORT, () => {
