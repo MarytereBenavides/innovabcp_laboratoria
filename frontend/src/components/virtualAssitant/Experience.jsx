@@ -80,7 +80,7 @@ export const Experience = () => {
             <Loader />
             <Canvas 
             camera={{ position: [0, 0, 0.0001], fov: 50 }} 
-           frameloop="demand"
+ 
            dpr={1}
            gl={{ powerPreference: "high-performance" }}
            performance={{ min: 0.1 }}
